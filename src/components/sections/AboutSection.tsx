@@ -29,26 +29,21 @@ const AboutSection = () => {
             className="relative"
           >
             <div className="relative aspect-square max-w-md mx-auto">
-              {/* Decorative elements */}
+              {/* Profile photo container */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-card border border-border overflow-hidden">
-                <div className="absolute inset-0 geometric-grid opacity-20" />
-                <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-primary/10 to-transparent" />
-              </div>
-              
-              {/* Code illustration */}
-              <div className="absolute inset-8 flex flex-col justify-center items-center">
-                <motion.div
-                  animate={{ rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 6, repeat: Infinity }}
-                  className="text-8xl mb-4"
-                >
-                  🧑‍💻
-                </motion.div>
-                <div className="font-mono text-sm text-muted-foreground space-y-1">
-                  <div><span className="text-primary">const</span> developer = {"{"}</div>
-                  <div className="pl-4">passione: <span className="text-primary">"infinita"</span>,</div>
-                  <div className="pl-4">caffè: <span className="text-primary">true</span></div>
-                  <div>{"}"}</div>
+                {/* Photo placeholder - replace src with your photo */}
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop&crop=face"
+                  alt="Mario Rossi - Developer"
+                  className="w-full h-full object-cover"
+                />
+                {/* Overlay gradient */}
+                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-background/90 to-transparent" />
+                
+                {/* Name overlay */}
+                <div className="absolute bottom-6 left-6 right-6">
+                  <h3 className="font-display text-2xl font-bold text-foreground">Mario Rossi</h3>
+                  <p className="text-primary font-medium">Freelance Developer</p>
                 </div>
               </div>
 
