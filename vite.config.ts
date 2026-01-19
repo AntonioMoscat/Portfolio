@@ -23,4 +23,10 @@ export default defineConfig(({ mode }) => ({
       '@': path.resolve(__dirname, './src'),
     },
   },
+
+  build: {
+    outDir: 'dist',
+    // Assicurati che i file siano copiati correttamente
+    emptyOutDir: true,
+  },
 }));
