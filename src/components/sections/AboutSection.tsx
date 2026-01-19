@@ -1,23 +1,23 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Zap, Target, Rocket, Coffee } from "lucide-react";
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Zap, Target, Rocket, Coffee } from 'lucide-react';
 
 const stats = [
-  { icon: Zap, value: "5+", label: "Anni di esperienza" },
-  { icon: Target, value: "50+", label: "Progetti completati" },
-  { icon: Coffee, value: "∞", label: "Caffè bevuti" },
+  { icon: Zap, value: '3+', label: 'Anni di esperienza' },
+  { icon: Target, value: '10+', label: 'Progetti completati' },
+  { icon: Coffee, value: '∞', label: 'Caffè bevuti' },
 ];
 
 const AboutSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
     <section id="chi-sono" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
-      
+
       <div className="container px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left - Image/Visual */}
@@ -32,18 +32,22 @@ const AboutSection = () => {
               {/* Profile photo container */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-card border border-border overflow-hidden">
                 {/* Photo placeholder - replace src with your photo */}
-                <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop&crop=face"
-                  alt="Mario Rossi - Developer"
+                <img
+                  src="ProfileImage.png"
+                  alt="Antonio Moscato - Developer"
                   className="w-full h-full object-cover"
                 />
                 {/* Overlay gradient */}
                 <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-background/90 to-transparent" />
-                
+
                 {/* Name overlay */}
                 <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="font-display text-2xl font-bold text-foreground">Mario Rossi</h3>
-                  <p className="text-primary font-medium">Freelance Developer</p>
+                  <h3 className="font-display text-2xl font-bold text-foreground">
+                    Antonio Moscato
+                  </h3>
+                  <p className="text-primary font-medium">
+                    Freelance Developer
+                  </p>
                 </div>
               </div>
 
@@ -74,14 +78,15 @@ const AboutSection = () => {
             </h2>
             <div className="space-y-4 text-muted-foreground font-body text-lg leading-relaxed">
               <p>
-                Ciao! Sono un freelance developer specializzato nella creazione di 
-                applicazioni web e mobile moderne. Ogni progetto è un'opportunità 
-                per creare qualcosa di unico e funzionale.
+                Ciao! Sono un freelance developer specializzato nella creazione
+                di applicazioni web e mobile moderne. Ogni progetto è
+                un'opportunità per creare qualcosa di unico e funzionale.
               </p>
               <p>
-                Il mio approccio combina design accattivante, codice pulito e 
-                un'attenzione maniacale ai dettagli. Lavoro a stretto contatto 
-                con i clienti per trasformare le loro visioni in realtà digitali.
+                Il mio approccio combina design accattivante, codice pulito e
+                un'attenzione maniacale ai dettagli. Lavoro a stretto contatto
+                con i clienti per trasformare le loro visioni in realtà
+                digitali.
               </p>
             </div>
 
@@ -96,8 +101,12 @@ const AboutSection = () => {
                   className="text-center"
                 >
                   <stat.icon className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="font-display text-3xl font-bold text-foreground">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="font-display text-3xl font-bold text-foreground">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {stat.label}
+                  </div>
                 </motion.div>
               ))}
             </div>

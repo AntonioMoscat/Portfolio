@@ -1,25 +1,46 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, Github, Send, ArrowUpRight } from "lucide-react";
-import { toast } from "sonner";
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Mail, Linkedin, Github, Send, ArrowUpRight } from 'lucide-react';
+import { toast } from 'sonner';
 
 const socialLinks = [
-  { icon: Mail, label: "Email", href: "mailto:ciao@tuodominio.com", username: "ciao@tuodominio.com" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/tuoprofilo", username: "/tuoprofilo" },
-  { icon: Github, label: "GitHub", href: "https://github.com/tuoprofilo", username: "@tuoprofilo" },
+  // {
+  //   icon: Mail,
+  //   label: 'Email',
+  //   href: 'mailto:ciao@tuodominio.com',
+  //   username: '',
+  // },
+  {
+    icon: Linkedin,
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/antonio-moscato/',
+    username: '',
+  },
+  // { icon: Github, label: "GitHub", href: "https://github.com/tuoprofilo", username: "@tuoprofilo" },
 ];
 
 const ContactSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Messaggio inviato! Ti risponderò presto.");
-    setFormData({ name: "", email: "", message: "" });
+
+    const subject = encodeURIComponent('Messaggio dal portfolio');
+    const body = encodeURIComponent(
+      `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMessaggio:\n${formData.message}`,
+    );
+
+    window.location.href = `mailto:tuamail@dominio.com?subject=${subject}&body=${body}`;
+
+    toast.success('Apertura client email...');
   };
 
   return (
@@ -43,7 +64,8 @@ const ContactSection = () => {
             Iniziamo a <span className="text-gradient">collaborare</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Hai un progetto in mente? Parliamone! Sono sempre aperto a nuove opportunità.
+            Hai un progetto in mente? Parliamone! Sono sempre aperto a nuove
+            opportunità.
           </p>
         </motion.div>
 
@@ -56,32 +78,44 @@ const ContactSection = () => {
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-medium mb-2 font-display">Nome</label>
+                <label className="block text-sm font-medium mb-2 font-display">
+                  Nome
+                </label>
                 <input
                   type="text"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body"
                   placeholder="Il tuo nome"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 font-display">Email</label>
+                <label className="block text-sm font-medium mb-2 font-display">
+                  Email
+                </label>
                 <input
                   type="email"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body"
                   placeholder="la.tua@email.com"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 font-display">Messaggio</label>
+                <label className="block text-sm font-medium mb-2 font-display">
+                  Messaggio
+                </label>
                 <textarea
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body resize-none"
                   placeholder="Raccontami del tuo progetto..."
                   rows={5}
@@ -102,7 +136,9 @@ const ContactSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col justify-center"
           >
-            <h3 className="font-display text-2xl font-bold mb-6">Oppure contattami direttamente</h3>
+            <h3 className="font-display text-2xl font-bold mb-6">
+              Oppure contattami direttamente
+            </h3>
             <div className="space-y-4">
               {socialLinks.map((link, index) => (
                 <motion.a
@@ -119,8 +155,12 @@ const ContactSection = () => {
                     <link.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <div className="font-display font-semibold">{link.label}</div>
-                    <div className="text-sm text-muted-foreground">{link.username}</div>
+                    <div className="font-display font-semibold">
+                      {link.label}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {link.username}
+                    </div>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                 </motion.a>
