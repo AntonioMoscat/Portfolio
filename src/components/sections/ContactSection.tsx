@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Mail, Linkedin, Github, Send, ArrowUpRight } from 'lucide-react';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser';
 
 const socialLinks = [
   // {
@@ -30,17 +31,30 @@ const ContactSection = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const subject = encodeURIComponent('Messaggio dal portfolio');
-    const body = encodeURIComponent(
-      `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMessaggio:\n${formData.message}`,
-    );
+    // honeypot
+    if ((e.target as HTMLFormElement).company?.value) return;
 
-    window.location.href = `mailto:tuamail@dominio.com?subject=${subject}&body=${body}`;
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      );
 
-    toast.success('Apertura client email...');
+      toast.success('Messaggio inviato con successo 🚀');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.log(error);
+      toast.error('Errore durante l’invio. Riprova.');
+    }
   };
 
   return (
@@ -90,6 +104,13 @@ const ContactSection = () => {
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body"
                   placeholder="Il tuo nome"
                   required
+                />
+                <input
+                  type="text"
+                  name="company"
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
                 />
               </div>
               <div>
