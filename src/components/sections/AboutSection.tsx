@@ -33,7 +33,7 @@ const AboutSection = () => {
               <div className="absolute inset-0 rounded-3xl bg-gradient-card border border-border overflow-hidden">
                 {/* Photo placeholder - replace src with your photo */}
                 <img
-                  src="ProfileImage.png"
+                  src="ProfileImage.jpeg"
                   alt="Antonio Moscato - Developer"
                   className="w-full h-full object-cover"
                 />

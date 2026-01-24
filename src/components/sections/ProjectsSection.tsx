@@ -1,43 +1,53 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { ExternalLink, Github } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { ExternalLink, Github } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const projects = [
   {
-    title: "E-Commerce Platform",
-    description: "Piattaforma e-commerce completa con gestione ordini, pagamenti e dashboard admin.",
-    tags: ["React", "Node.js", "Stripe", "MongoDB"],
-    color: "from-orange-500/20 to-red-500/20",
-    image: "🛒",
+    title: 'E-Commerce Platform',
+    description:
+      'Piattaforma e-commerce completa con gestione ordini, pagamenti e dashboard admin.',
+    tags: ['React', 'Node.js', 'Stripe', 'MongoDB'],
+    color: 'from-orange-500/20 to-red-500/20',
+    image: '🛒',
   },
   {
-    title: "SaaS Dashboard",
-    description: "Dashboard analytics per startup con grafici real-time e gestione utenti.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Charts"],
-    color: "from-blue-500/20 to-cyan-500/20",
-    image: "📊",
+    title: 'SaaS Dashboard',
+    description:
+      'Dashboard analytics per startup con grafici real-time e gestione utenti.',
+    tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'Charts'],
+    color: 'from-blue-500/20 to-cyan-500/20',
+    image: '📊',
   },
   {
-    title: "Mobile App",
-    description: "Applicazione mobile cross-platform per prenotazioni e gestione appuntamenti.",
-    tags: ["React Native", "Firebase", "Push Notifications"],
-    color: "from-green-500/20 to-emerald-500/20",
-    image: "📱",
+    title: 'Mobile App',
+    description:
+      'Applicazione mobile cross-platform per prenotazioni e gestione appuntamenti.',
+    tags: ['React Native', 'Firebase', 'Push Notifications'],
+    color: 'from-green-500/20 to-emerald-500/20',
+    image: '📱',
   },
   {
-    title: "Portfolio Creativo",
-    description: "Sito portfolio per agenzia creativa con animazioni avanzate e CMS.",
-    tags: ["Gatsby", "GSAP", "Contentful", "Netlify"],
-    color: "from-purple-500/20 to-pink-500/20",
-    image: "🎨",
+    title: 'Portfolio Creativo',
+    description:
+      'Sito portfolio per agenzia creativa con animazioni avanzate e CMS.',
+    tags: ['Gatsby', 'GSAP', 'Contentful', 'Netlify'],
+    color: 'from-purple-500/20 to-pink-500/20',
+    image: '🎨',
   },
 ];
 
-const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => {
+const ProjectCard = ({
+  project,
+  index,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+}) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
     <motion.div
@@ -49,8 +59,10 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
     >
       <div className="card-elevated rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-elevated">
         {/* Card gradient background */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-        
+        <div
+          className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+        />
+
         <div className="relative p-6 md:p-8">
           {/* Project icon */}
           <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-500">
@@ -80,7 +92,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
           </div>
 
           {/* Actions */}
-          <div className="flex gap-3">
+          {/* <div className="flex gap-3">
             <Button variant="ghost" size="sm" className="gap-2">
               <ExternalLink className="w-4 h-4" />
               Demo
@@ -89,7 +101,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
               <Github className="w-4 h-4" />
               Code
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </motion.div>
@@ -98,13 +110,13 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 
 const ProjectsSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
     <section id="progetti" className="py-24 md:py-32 relative">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
-      
+
       <div className="container px-6 relative z-10">
         <motion.div
           ref={ref}
